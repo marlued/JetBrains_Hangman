@@ -1,61 +1,27 @@
 import random
 
-attempts = 8
-welcome_message = 'H A N G M A N\n'
-words_to_find = ['python', 'java', 'swift', 'javascript']
-word_for_game = random.choice(words_to_find)
-word_letters_as_set = set(word_for_game)
+programming_languages = 'python java javascript swift'.split()
+programming_language = random.choice(programming_languages)
+letters_in_language = set(programming_language)
+number_of_attempts = 8
 letters_already_found = []
+game_headline = 'H A N G M A N\n'
 
-word_all_covered = ''.join(['-' for letter in word_for_game])
+print(game_headline)
 
-# print(word_for_game)  # for debug purposes only: show the relevant word
-# print(word_letters_as_set)  # for debug purposes only: show the letters in the word without duplicates.
-
-print(welcome_message)
-print(word_all_covered)
-
-while attempts == 8:
-    user_input = input('Input a letter: ')
-    # print(attempts)  # for debug purposes only: show number of remaining attempts
-
-    if user_input in word_letters_as_set:
-        output_string = ''.join([letter if letter == user_input else '-' for letter in word_for_game])
-        letters_already_found.append(user_input)
-        # print(letters_already_found)  # for debug purposes only: show letters already found
-        print(output_string)
-
-    else:
-        print("That letter doesn't appear in the word")
-        print(word_all_covered)
-
-    attempts -= 1
-
-while attempts != 0:
-    # print(f'{attempts}')  # for debug purposes only: show number of remaining attempts
-
-    print(''.join([letter for letter in word_for_game if letter == letters_already_found]))
+while number_of_attempts > 0:
+    number_of_attempts -= 1
+    masked_word = [letter if letter in letters_already_found else '-' for letter in programming_language]
+    print(''.join(masked_word))
     user_input = input('Input a letter: ')
 
-    if user_input in word_letters_as_set and user_input not in letters_already_found:
-        output_string = [letter if letter == user_input or letter in letters_already_found
-                         else '-' for letter in word_for_game]
-        letters_already_found.append(user_input)
-        # print(letters_already_found)  # for debug purposes only: show letters already found
-        print(''.join(output_string))
-
-    elif user_input in letters_already_found:
-        output_string = [letter if letter == letter in letters_already_found
-                         else '-' for letter in word_for_game]
-        print(''.join(output_string))
+    if user_input in letters_in_language and user_input in letters_already_found:
         continue
 
-    else:
-        output_string = [letter if letter == letter in letters_already_found
-                         else '-' for letter in word_for_game]
-        print("That letter doesn't appear in the word")
-        print(''.join(output_string))
+    elif user_input in letters_in_language:
+        letters_already_found.append(user_input)
 
-    attempts -= 1
+    elif user_input not in letters_in_language:
+        print("That letter doesn't appear in the word.")
 
 print('\nThanks for playing!')
