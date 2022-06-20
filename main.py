@@ -45,7 +45,9 @@ while attempts != 0:
         print(''.join(output_string))
 
     elif user_input in letters_already_found:
-        # print('continue')  # for debug purposes only
+        output_string = [letter if letter == letter in letters_already_found
+                         else '-' for letter in word_for_game]
+        print(''.join(output_string))
         continue
 
     else:
