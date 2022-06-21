@@ -10,18 +10,26 @@ game_headline = 'H A N G M A N\n'
 print(game_headline)
 
 while number_of_attempts > 0:
-    number_of_attempts -= 1
-    masked_word = [letter if letter in letters_already_found else '-' for letter in programming_language]
-    print(''.join(masked_word))
-    user_input = input('Input a letter: ')
 
-    if user_input in letters_in_language and user_input in letters_already_found:
-        continue
+    if letters_in_language == set(letters_already_found):
+        print('won')
+        break
 
-    elif user_input in letters_in_language:
-        letters_already_found.append(user_input)
+    else:
+        masked_word = [letter if letter in letters_already_found else '-' for letter in programming_language]
+        print(''.join(masked_word))
+        user_input = input('Input a letter: ')
 
-    elif user_input not in letters_in_language:
-        print("That letter doesn't appear in the word.")
+        if user_input in letters_in_language and user_input not in letters_already_found:
+            letters_already_found.append(user_input)
 
-print('\nThanks for playing!')
+        elif user_input in letters_in_language and user_input in letters_already_found:
+            number_of_attempts -= 1
+            print('No improvements.')
+
+        elif user_input not in letters_in_language:
+            number_of_attempts -= 1
+            print("That letter doesn't appear in the word.")
+
+if letters_in_language != set(letters_already_found):
+    print('lost')
