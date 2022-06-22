@@ -12,7 +12,7 @@ print(game_headline)
 while number_of_attempts > 0:
 
     if letters_in_language == set(letters_already_found):
-        print('won')
+        print('You guessed the word!\nYou survived!')
         break
 
     else:
@@ -32,4 +32,4 @@ while number_of_attempts > 0:
             print("That letter doesn't appear in the word.")
 
 if letters_in_language != set(letters_already_found):
-    print('lost')
+    print('\nYou lost!')
