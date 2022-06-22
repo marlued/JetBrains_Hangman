@@ -20,8 +20,8 @@ while number_of_attempts > 0:
         print(''.join(masked_word))
         user_input = input('Input a letter: ')
 
-        if len(user_input) > 1:
-            print('Please, input a single letter.')
+        if len(user_input) != 1:
+            print(f'Please, input a single letter.')
 
         elif not user_input.isalpha() or user_input == '' or not user_input.islower():
             print('Please, enter a lowercase letter from the English alphabet.')
@@ -31,7 +31,7 @@ while number_of_attempts > 0:
 
         elif user_input in letters_in_language and user_input in letters_already_found:
             number_of_attempts -= 1
-            print("You've already guessed this letter.")
+            print(f"You've already guessed this letter.")
 
         elif user_input not in letters_in_language:
             number_of_attempts -= 1
