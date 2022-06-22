@@ -23,10 +23,7 @@ while number_of_attempts > 0:
         if len(user_input) > 1:
             print('Please, input a single letter.')
 
-        elif not user_input.isalpha() or user_input == '':
-            print('Please, enter a lowercase letter from the English alphabet.')
-
-        elif not user_input.islower():
+        elif not user_input.isalpha() or user_input == '' or not user_input.islower():
             print('Please, enter a lowercase letter from the English alphabet.')
 
         elif user_input in letters_in_language and user_input not in letters_already_found:
