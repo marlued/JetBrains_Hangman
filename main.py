@@ -20,12 +20,13 @@ while True:
         while number_of_attempts > 0:
 
             if letters_in_language == set(letters_already_found):
-                print(f'You guessed the word {programming_language}!\nYou survived!')
+                print(f'You guessed the word {programming_language}!\n\nYou survived!')
                 games_won += 1
                 letters_already_found = []
                 break
 
             else:
+                print('')
                 masked_word = [letter if letter in letters_already_found else '-' for letter in programming_language]
                 print(''.join(masked_word))
                 user_input = input('Input a letter: ')
@@ -48,7 +49,10 @@ while True:
                     print("That letter doesn't appear in the word.")
 
         else:
-            print('\nYou lost!')
+            print('')
+            masked_word = [letter if letter in letters_already_found else '-' for letter in programming_language]
+            print(''.join(masked_word))
+            print('You lost!')
             games_lost += 1
             continue
 
